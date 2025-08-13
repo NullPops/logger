@@ -48,6 +48,9 @@ jobs:
           # PRs read from cache, main can write
           cache-read-only: ${{ github.ref != 'refs/heads/main' }}
 
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
+
       - name: Print Gradle Version
         run: ./gradlew --version
 
