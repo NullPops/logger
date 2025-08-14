@@ -57,11 +57,3 @@ jobs:
 
       - name: Build & Unit Test (all modules)
         run: ./gradlew clean build --stacktrace
-
-      # Publish only on pushes to main (i.e., after PR merge)
-      - name: Publish to GitHub Packages
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_ACTOR: ${{ github.actor }}
-        run: ./gradlew publish --no-daemon --stacktrace
