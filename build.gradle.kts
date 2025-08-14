@@ -8,10 +8,8 @@ plugins {
     id("org.jreleaser") version "1.19.0"
 }
 
-val publicationVersion = "1.0.1"
-
 group = "io.github.nullpops"
-version = publicationVersion
+version = "1.0.1"
 
 java {
     withSourcesJar()
