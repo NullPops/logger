@@ -37,6 +37,10 @@ enum class LoggerLevel {
 
 class Logger(var scope: String = "main") {
 
+    companion object {
+        private val formatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+    }
+
     fun trace(text: String) {
         print(LoggerLevel.TRACE, text)
     }
@@ -76,8 +80,5 @@ class Logger(var scope: String = "main") {
     }
 
 
-    fun getCurrentTime(): String {
-        val currentTime = LocalTime.now()
-        return currentTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"))
-    }
+    fun getCurrentTime(): String = LocalTime.now().format(formatter)
 }
