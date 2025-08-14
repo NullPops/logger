@@ -6,7 +6,7 @@ plugins {
 
 val publicationVersion = "1.0.0"
 
-group = "nullpops"
+group = "io.github.nullpops"
 version = publicationVersion
 
 
