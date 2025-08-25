@@ -1,15 +1,16 @@
+import org.jreleaser.gradle.plugin.tasks.JReleaserDeployTask
 import org.jreleaser.model.Active
 import org.jreleaser.model.Signing
 
 plugins {
-    kotlin("jvm") version "2.2.0"
+    kotlin("jvm")
     `java-library`
     `maven-publish`
-    id("org.jreleaser") version "1.19.0"
+    id("org.jreleaser")
 }
 
 group = "io.github.nullpops"
-version = "1.0.1"
+version = "1.0.2"
 
 java {
     withSourcesJar()
@@ -21,13 +22,18 @@ repositories {
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.10.0"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation(platform(Testing.junit.bom))
+    testImplementation(Testing.junit.jupiter)
 }
 
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.withType<JReleaserDeployTask> {
+    dependsOn("publish")
+}
+
 
 publishing {
     repositories {
@@ -74,6 +80,7 @@ publishing {
 
 jreleaser {
     signing {
+        dryrun = false
         active.set(Active.ALWAYS)
         armored.set(true)
         mode = Signing.Mode.MEMORY
